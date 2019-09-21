@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
+body {
+  font-size: 16px;
+  font-family: 'Dosis', sans-serif;
+  color: #f4f4f4;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Use before to apply opacity to the background image */
+body::before {
+  background: url('img/gow.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* LANDING PAGE */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.landing-page h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  padding: 0;
+  margin: 0;
+}
+
+.landing-page p {
+  line-height: 25px;
+  font-size: 1.2rem;
+}
+
+.landing-page button {
+  background: rgba(13, 110, 139, 0.75);
+  border: none;
+  padding: 0.7rem 1rem;
+  color: #f4f4f4;
+  cursor: pointer;
+  transition: all 0.4s ease-in;
+}
+
+.landing-page button:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.landing-page button:focus {
+  outline: none;
+}
+
+/* HAMBURGER MENU */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* On top of the landing page */
+  z-index: 1;
+}
+
+.icon-wrapper {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 35px;
+  height: 35px;
+  color: #f4f4f4;
+  /* On top of the menu */
+  position: absolute;
+  z-index: 2;
+  background: rgba(13, 110, 139, 0.75);
+}
+
+.icon-wrapper .bars,
+.icon-wrapper .times {
+  position: absolute;
+  left: 10px;
+  transition: all 0.4s ease-in, visibility 0s;
+}
+
+.icon-wrapper .bars {
+  padding: 3px;
+  visibility: visible;
+}
+
+.icon-wrapper .times {
+  padding: 4px;
+  visibility: hidden;
+}
+
+/* On top of the icons so user can click on the checkbox */
+.menu .toggler {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  padding: 1rem;
+  width: 30px;
+  height: 25px;
+  /* On top of the icons */
+  z-index: 5;
+  opacity: 0;
+}
+
+/* MENU OPTIONS */
+
+.ul-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  /* On top of landing page, under the icon-wrapper */
+  z-index: 1;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.ul-wrapper > div {
+  background: rgba(24, 39, 51, 0.85);
+  transform: scale(0);
+  /* border-radius: 50%; */
+  transition: all 0.4s ease;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ul-wrapper > div > div {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ul-wrapper ul {
+  padding-left: 15px;
+  list-style: none;
+}
+
+li {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  color: #f4f4f4;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+  transition: color 0.4s ease;
+}
+
+/* ANIMATION TO SHOW THE MENU OPTIONS */
+
+/* elem + elem = style element immediately after */
+/* elem ~ elem = style element preceded by */
+
+.menu .toggler:checked + div > i {
+  transform: rotate(135deg);
+}
+
+.menu .toggler:checked + div > i {
+  visibility: hidden;
+}
+
+.menu .toggler:checked + div > i + i {
+  visibility: visible;
+  transform: rotate(90deg);
+}
+
+.menu .toggler:checked:hover + div > i + i {
+  transform: rotate(270deg);
+}
+
+/* Show Menu Options */
+.menu .toggler:checked ~ .ul-wrapper {
+  visibility: visible;
+}
+
+.menu .toggler:checked ~ .ul-wrapper > div {
+  transform: scale(1);
+  transition-duration: 0.75s;
+}
+
+.menu .toggler:checked ~ .ul-wrapper > div > div {
+  opacity: 1;
+  transition: opacity 0.4s ease 0.4s;
+}
